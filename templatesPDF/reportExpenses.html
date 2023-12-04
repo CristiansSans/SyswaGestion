@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Reporte de cierre de gastos</title>
+    <style>
+        h1{
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+        p{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        table {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+        .headerStyle{
+            width: 100%;
+            /* padding-bottom: 20px; */
+            display: inline-block;
+        }
+        
+        .boxTotals{
+            width: 60%;
+            border: solid 2px #272838;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .imgStyle{
+            width: 30%;
+            padding: 20px;
+            display: inline-block;
+        }
+        .imgStyle img{
+            width: 80%;
+            height: 150px;
+            /*  */
+        }
+
+        hr{
+            background-color: #272838;
+            height: 5px;
+            border: none;
+            border-radius: 40px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        span{
+            float: right;
+        }
+    </style>
+  </head>
+  <body>
+    <h1>Reporte Mensual {{datee.month}} {{datee.year}}</h1>
+    <div class="headerStyle">
+        <div class="imgStyle">
+            <img src="http://localhost:3200/static/logos/syswa-gestion.png" alt="">
+        </div>
+        <div class="boxTotals">
+            <p>Saldo inicial: {{data.reinvestment}} <span>Saldo final: {{data.totalFinal}}</span></p>
+            <p>Ingreso: {{data.sales}} <span>Ganancia (%): {{data.gain}}</span></p>
+            <p>Egreso: {{data.expenses}}</p>
+        </div>
+    </div>
+    
+    <hr>
+    <table>
+        <tr>
+          <th>Descripción</th>
+          <th>Tipo</th>
+          <th>Fecha</th>
+          <th>Total</th>
+        </tr>
+        {{#each expenses}}
+            <tr>
+                <td>{{this.detaill}}</td>
+                <td>{{this.typee}}</td>
+                <td>{{this.createdAt}}</td>
+                <td>{{this.amount}}</td>
+            </tr>
+        {{/each}}
+      </table>
+  </body>
+</html>
